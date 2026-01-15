@@ -1,0 +1,51 @@
+<html>
+    <header>MY FIRST PROJECT</header>
+    <head>
+      <style>
+        header{
+          font-family: 'Courier New', Courier, monospace;
+          color:olivedrab;
+        }
+        body{
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+          background-color:cyan;
+          text-align: center;
+        }
+        h1 {
+          margin-bottom: 10px;
+        }
+        button {
+          padding: 10px 16px;
+          margin: 6px;
+          font-size: 14px;
+          color: darkgoldenrod;
+          background-color:maroon;
+        }
+        button:disabled{
+          color: darkgoldenrod;
+          padding :10px 16px;
+          margin: 6px;
+          font-size: 14px;
+          cursor:not-allowed;
+        }
+        #rest{
+       position: fixed;
+       top: 20px;
+       right: 20px;
+        }
+      </style>    
+                 </head>
+    <body>
+        <h1>BALANCE</h1> <button id="rest"onclick="reset()">RESET</button>
+        <h1 id="balnce">1000</h1>
+        <input type="number" id="amt" oninput="no()">
+        <button id="redbtn" onclick="setbet('RED')" >RED</button><button id ="blackbtn" onclick="setbet('BLACK')">BLACK</button>
+
+       <h1>Number  rolling iss</h1>
+        <h2 id="lol">000</h2>
+        <button id="spbtn"onclick="spin()" disabled>SPIN</button>
+        <h3>HISTORY</h3>
+        <ul id="HISTORY"></ul>
+        <script src="script.js"></script>
+    </body>
+</html>
