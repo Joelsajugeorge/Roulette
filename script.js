@@ -1,3 +1,51 @@
+// Import the functions you need from the SDKs you need
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCPu5WYUdhiJuRM-jsNtxfkh67EF9R8sMo",
+  authDomain: "roulette-game-1c215.firebaseapp.com",
+  projectId: "roulette-game-1c215",
+  storageBucket: "roulette-game-1c215.firebasestorage.app",
+  messagingSenderId: "130061333957",
+  appId: "1:130061333957:web:c8c5ac35d6d231204547ac"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+function googlelogin(){
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider).catch((error)=>{console.error(error);});
+}
+function signup(){
+  const email=document.getElementById("email").value.trim();
+  const password=document.getElementById("password").value.trim();
+  auth.createUserWithEmailAndPassword(email, password).then((result)=>{document.getElementById("authMsg").innerText="Account created sucessfully"}).catch((error)=>{document.getElementById("authMsg").innerText=error.message});
+}
+function login(){
+  const email=document.getElementById("email").value.trim();
+  const password=document.getElementById("password").value.trim();
+  auth.signInWithEmailAndPassword(email, password).then((result)=>{document.getElementById("authMsg").innerText="LOGGED IN SUCCESFULLY"}).catch((error)=>{document.getElementById("authMsg").innerText=error.message});
+}
+function logout(){
+  auth.signOut().then(()=>{console.log("User logged out");}).catch((error)=>{console.error("LOGOUT ERROR:"+error);});
+}
+auth.onAuthStateChanged((user)=>{
+  const authSection = document.getElementById("authsection");
+  const gamesection = document.getElementById("gamesection");
+  if(user){
+    authSection.style.display="none";
+    gamesection.style.display="block";
+  }
+  else{
+    authSection.style.display="block";
+    gamesection.style.display="none"
+  }
+});
+
+
 let spinhis = [];
             let balnce =document.getElementById("balnce");
             let b =Number(balnce.innerText);
@@ -5,7 +53,9 @@ let spinhis = [];
             let cbet="";
             function reset(){
               balnce.innerText=1000;
+              b =1000;
               document.getElementById("HISTORY").innerHTML="";
+              spinhis=[];
             }
             function setbet(be){
                  cbet=be;
@@ -71,3 +121,4 @@ let spinhis = [];
                 }
                 document.getElementById("spbtn").disabled = true;
              }
+             

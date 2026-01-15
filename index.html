@@ -1,3 +1,5 @@
+<!DOCTYPE html> 
+
 <html>
     <header>MY FIRST PROJECT</header>
     <head>
@@ -14,6 +16,7 @@
         h1 {
           margin-bottom: 10px;
         }
+        
         button {
           padding: 10px 16px;
           margin: 6px;
@@ -33,9 +36,23 @@
        top: 20px;
        right: 20px;
         }
-      </style>    
+      </style>   
+      <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script> 
                  </head>
     <body>
+      <div id="authsection">
+      <h2>LOGIN / SIGNUP</h2>
+      <input type="email" id="email" placeholder="email">
+      <br>
+      <input type="password" id="password" placeholder="password">
+      <br><br>
+      <button onclick="googlelogin()">SIGN IN WITH GOOGLE</button>
+      <button onclick="signup()">SIGNUP</button>
+      <button onclick="login()">LOGIN</button>
+      <p id="authMsg"></p>
+      </div>
+      <div id="gamesection" style="display: none;">
         <h1>BALANCE</h1> <button id="rest"onclick="reset()">RESET</button>
         <h1 id="balnce">1000</h1>
         <input type="number" id="amt" oninput="no()">
@@ -46,6 +63,8 @@
         <button id="spbtn"onclick="spin()" disabled>SPIN</button>
         <h3>HISTORY</h3>
         <ul id="HISTORY"></ul>
+        <button onclick="logout()">LOGOUT</button>
+      </div>
         <script src="script.js"></script>
     </body>
 </html>
