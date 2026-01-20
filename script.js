@@ -11,7 +11,7 @@ const firebaseConfig = {
   messagingSenderId: "130061333957",
   appId: "1:130061333957:web:c8c5ac35d6d231204547ac"
 };
-
+console.log("hello");
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
@@ -47,28 +47,43 @@ auth.onAuthStateChanged((user)=>{
 
 
 let spinhis = [];
+
+          // GETTING THE BALANCE PART DONE
             let balnce =document.getElementById("balnce");
             let b =Number(balnce.innerText);
+            //GETTING THE BET AMOUNT
             let amt=document.getElementById("amt");
             let cbet="";
+            //RESET FUNCTION 
             function reset(){
               balnce.innerText=1000;
               b =1000;
               document.getElementById("HISTORY").innerHTML="";
               spinhis=[];
+              document.getElementById("amt").value='';
+              document.getElementById("beton").value='';
+              document.getElementById("lol").innerText="000";
             }
+            //NUMBER BET
+            function nm(){
+              cbet=Number(document.getElementById("beton").value);
+              no();
+            }
+            
+            //INITIALIZE THE BET OPTION(RED OR BLACK CURRENTLY)
             function setbet(be){
                  cbet=be;
                  no();
             }
+            //CHECKING IF THE USER WON
             function check(cl){
-               let co=cl;
                let xbet= Number(document.getElementById("amt").value);
-               if(cbet==co){
-                b+=xbet;
-               }
-               else if(cbet==""){
-                b=b;
+               if(cl.includes(cbet)){
+                 if(cbet==cl[0]){
+                  b+=xbet*35;
+                 }
+                 else{
+                b+=xbet;}
                }
                else{
                 b-=xbet;
@@ -79,6 +94,7 @@ let spinhis = [];
                   alert("GAME OVER");
                 }
             }
+            //CHECKS IF USER PLACED A BET OR NO IF NOT BUTTON WONT WORK
             function no(){
               let nobet=cbet;
               let noamt=document.getElementById("amt").value;
@@ -87,7 +103,7 @@ let spinhis = [];
                 alert("You cant place a higher bet than your balance");
                 return;
               }
-              if((nobet=="RED"||nobet=="BLACK")&&(noamt>0)){
+              if(nobet!==""&&(noamt>0)){
                 flg.disabled = false;
               }
               else
@@ -95,19 +111,36 @@ let spinhis = [];
                 flg.disabled = true;
               }
             }
+            //SPIN FUNCTION
             function spin() {
                              
-                let c = Math.floor(Math.random()*37);
+                let c = Math.floor(Math.random()*37);;
                 let red=[1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
-                let col = ""
+                let col = "";
+                let ore="";
+                let hil="";
                 if(c==0){col="GREEN";}
                 else if(red.includes(c)){col="RED";}
                 else{col="BLACK";}
+                //UPDATING THE NUMBER WON
                 let s= document.getElementById("lol");
                 s.innerText="NUMBER= "+c+"|COLOUR= "+col;
+                if(c%2==0){
+                  ore="even";
+                }
+                else{
+                  ore="odd";
+                }
+                if(c>0&&c<=19){
+                  hil="OO";
+                }
+                else if(c>19&&c<=36){
+                  hil="ntt";
+                }
+                let res=[c,col,ore,hil];
                 s.style.color=col.toLowerCase();; 
-                check(col);
-                cbet="";
+                check(res);
+                cbet='';
                 spinhis.unshift(c+"("+col+")");
                 if (spinhis.length > 5){
                   spinhis.pop();
@@ -120,5 +153,5 @@ let spinhis = [];
                   hl.appendChild(li);
                 }
                 document.getElementById("spbtn").disabled = true;
+                document.getElementById("beton").value='';
              }
-             

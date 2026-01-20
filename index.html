@@ -6,18 +6,52 @@
       <style>
         header{
           font-family: 'Courier New', Courier, monospace;
-          color:olivedrab;
+          color:rgb(42, 4, 255);
         }
         body{
           font-family: Verdana, Geneva, Tahoma, sans-serif;
-          background-color:cyan;
+          background-color:rgba(143, 182, 149);
           text-align: center;
         }
         h1 {
           margin-bottom: 10px;
         }
-        
+        #redbtn{
+          position: relative;
+          top:1cm;
+          left:5cm;
+          background-color: rgb(216, 1, 1);
+        }
+        #even{
+          position: relative;
+          top:1cm;
+          right:4cm;
+          outline: 50% solid yellow;
+          border-color: rgb(255, 255, 255);
+        }
+        #odd{
+          top:1cm;
+          left:.3cm;
+        }
+        #ntt{
+          top:1cm;
+          left:.3cm;
+        }
+        #one-e{
+          
+          position: relative;
+          top:1cm;
+          right:3.9cm;
+
+        }
+        #blackbtn{
+          position: relative;
+          top: 1cm;
+          left:5cm;
+          background-color: black;
+        }
         button {
+          position: relative;
           padding: 10px 16px;
           margin: 6px;
           font-size: 14px;
@@ -31,10 +65,37 @@
           font-size: 14px;
           cursor:not-allowed;
         }
+        #balnce{
+          position: relative;
+          bottom:1.6cm;
+          left:4cm
+        }
+        #amt{
+          position:relative;
+          bottom:.3cm;
+          left:10cm;
+          padding: .2cm;
+          border-radius: .5cm;
+        }
         #rest{
        position: fixed;
        top: 20px;
        right: 20px;
+        }
+        #lol0{
+        position: relative;
+        top:1cm;
+        }
+        #lol{
+          position: relative;
+          top:.5cm;
+        }
+        #beton{
+          border-radius: 10CM;
+          padding: .5%;
+          position: relative;
+          top:1cm;
+          left:1cm;
         }
       </style>   
       <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
@@ -53,12 +114,13 @@
       <p id="authMsg"></p>
       </div>
       <div id="gamesection" style="display: none;">
-        <h1>BALANCE</h1> <button id="rest"onclick="reset()">RESET</button>
+        <h1>BALANCE:</h1> <button id="rest"onclick="reset()">RESET</button>
         <h1 id="balnce">1000</h1>
-        <input type="number" id="amt" oninput="no()">
+        <input type="number" id="amt" oninput="no()" placeholder="AMOUNT">
         <button id="redbtn" onclick="setbet('RED')" >RED</button><button id ="blackbtn" onclick="setbet('BLACK')">BLACK</button>
-
-       <h1>Number  rolling iss</h1>
+        <button id="one-e" onclick="setbet('OO')">1to18</button><button id="even" onclick="setbet('even')">EVEN</button><button id="odd" onclick="setbet('odd')">ODD</button><button id="ntt"onclick="setbet('ntt')">19TO36</button>
+        <input type="number" id="beton"  oninput="nm()" placeholder="BET ANY NUMBER">
+       <h1 id="lol0">Number  rolling iss</h1>
         <h2 id="lol">000</h2>
         <button id="spbtn"onclick="spin()" disabled>SPIN</button>
         <h3>HISTORY</h3>
